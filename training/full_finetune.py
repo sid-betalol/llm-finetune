@@ -18,6 +18,15 @@ from transformers import (
 )
 
 
+def format_value(value, decimal_places=4):
+    if isinstance(value, str):
+        return value
+    return f"{value:.{decimal_places}f}"
+
+def format_percentage(value):
+    if isinstance(value, str):
+        return value
+    return f"{value:.1f}%"
 class ShakespeareDataset(torch.utils.data.Dataset):
     """Custom dataset for Shakespeare finetuning."""
     
@@ -214,16 +223,16 @@ def plot_training_curves(output_dir: str) -> None:
     Training Summary:
     
     Training Loss:
-    • Initial: {initial_train_loss:.4f}
-    • Final: {final_train_loss:.4f}
-    • Best: {best_train_loss:.4f}
-    • Improvement: {train_improvement_pct:.1f}%
-    
+    - Initial: {format_value(initial_train_loss)}
+    - Final: {format_value(final_train_loss)}
+    - Best: {format_value(best_train_loss)}
+    - Improvement: {format_percentage(train_improvement_pct)}
+
     Validation Loss:
-    • Initial: {initial_eval_loss:.4f}
-    • Final: {final_eval_loss:.4f}
-    • Best: {best_eval_loss:.4f}
-    • Improvement: {eval_improvement_pct:.1f}%
+    - Initial: {format_value(initial_eval_loss)}
+    - Final: {format_value(final_eval_loss)}
+    - Best: {format_value(best_eval_loss)}
+    - Improvement: {format_percentage(eval_improvement_pct)}
     
     Total Steps: {len(train_losses) if train_losses else 0}
     """
