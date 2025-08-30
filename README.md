@@ -2,6 +2,34 @@
 
 This project explores fine-tuning DistilGPT-2 on a modern-to-Shakespearean translation dataset using RunPod GPU infrastructure. 
 
+## Setup
+
+### Requirements
+- Python 3.11+
+- CUDA-compatible GPU (for training)
+- RunPod account (for GPU training)
+
+### Installation
+
+```bash
+# Clone repository
+git clone https://github.com/your-username/llm-finetune.git
+cd llm-finetune
+
+# Install dependencies using uv
+uv sync
+
+# Run data preparation
+uv run python data/prepare_data.py
+
+# Run training (requires GPU)
+uv run python training/full_finetune.py
+
+# Optional: Run LoRA training
+uv run python training/lora_finetune.py
+```
+**Tools used**: This project uses `uv` for dependency management and `ruff` for code formatting and linting.
+
 ## Overview
 
 **Model**: DistilGPT-2 (82M parameters)  
