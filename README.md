@@ -22,11 +22,9 @@ uv sync
 # Run data preparation
 uv run python data/prepare_data.py
 
-# Run training (requires GPU)
+# Run training
 uv run python training/full_finetune.py
 
-# Optional: Run LoRA training
-uv run python training/lora_finetune.py
 ```
 **Tools used**: This project uses `uv` for dependency management and `ruff` for code formatting and linting.
 
