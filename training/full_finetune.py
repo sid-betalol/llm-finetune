@@ -14,8 +14,31 @@ from transformers import (
     GPT2LMHeadModel,
     GPT2Tokenizer,
     Trainer,
+    TrainerCallback,
     TrainingArguments,
 )
+
+
+class LossLoggingCallback(TrainerCallback):
+    """Custom callback to log training losses at each step."""
+    
+    def __init__(self):
+        self.training_losses = []
+    
+    def on_log(self, args, state, control, model=None, logs=None, **kwargs):
+        """Log training loss when available."""
+        if logs and 'loss' in logs:
+            self.training_losses.append({
+                'step': state.global_step,
+                'train_loss': logs['loss']
+            })
+    
+    def on_train_end(self, args, state, control, **kwargs):
+        """Save training losses to file at end of training."""
+        loss_file = os.path.join(args.output_dir, "custom_training_losses.json")
+        with open(loss_file, 'w', encoding='utf-8') as f:
+            json.dump(self.training_losses, f, indent=2)
+        print(f"Saved {len(self.training_losses)} training loss points to {loss_file}")
 
 
 def format_value(value, decimal_places=4):
@@ -23,10 +46,13 @@ def format_value(value, decimal_places=4):
         return value
     return f"{value:.{decimal_places}f}"
 
+
 def format_percentage(value):
     if isinstance(value, str):
         return value
     return f"{value:.1f}%"
+
+
 class ShakespeareDataset(torch.utils.data.Dataset):
     """Custom dataset for Shakespeare finetuning."""
     
@@ -78,7 +104,7 @@ def load_model_and_tokenizer(model_name: str) -> tuple[GPT2LMHeadModel, GPT2Toke
 
 
 def plot_training_curves(output_dir: str) -> None:
-    """Create comprehensive training plots from trainer state."""
+    """Create comprehensive training plots from trainer state and custom logs."""
     trainer_state_path = os.path.join(output_dir, "trainer_state.json")
 
     if not os.path.exists(trainer_state_path):
@@ -93,31 +119,36 @@ def plot_training_curves(output_dir: str) -> None:
             trainer_state_path = os.path.join(latest_checkpoint, "trainer_state.json")
             print(f"Using trainer state from checkpoint: {latest_checkpoint}")
 
-    if not os.path.exists(trainer_state_path):
-        print(f"Warning: No trainer state file found at {trainer_state_path}")
-        return
-    
-    # Load training history
-    with open(trainer_state_path, encoding="utf-8") as f:
-        trainer_state = json.load(f)
-    
-    log_history = trainer_state.get("log_history", [])
-    if not log_history:
-        print("No training history found")
-        return
-    
-    # Extract metrics
+    # Load training history from trainer state
     train_losses = []
     eval_losses = []
     learning_rates = []
     
-    for entry in log_history:
-        if "train_loss" in entry:
-            train_losses.append((entry["step"], entry["train_loss"]))
-        if "eval_loss" in entry:
-            eval_losses.append((entry["step"], entry["eval_loss"]))
-        if "learning_rate" in entry:
-            learning_rates.append((entry["step"], entry["learning_rate"]))
+    if os.path.exists(trainer_state_path):
+        with open(trainer_state_path, encoding="utf-8") as f:
+            trainer_state = json.load(f)
+        
+        log_history = trainer_state.get("log_history", [])
+        
+        for entry in log_history:
+            if "train_loss" in entry:
+                train_losses.append((entry["step"], entry["train_loss"]))
+            if "eval_loss" in entry:
+                eval_losses.append((entry["step"], entry["eval_loss"]))
+            if "learning_rate" in entry:
+                learning_rates.append((entry["step"], entry["learning_rate"]))
+    
+    # Load custom training losses if available
+    custom_loss_file = os.path.join(output_dir, "custom_training_losses.json")
+    if os.path.exists(custom_loss_file):
+        with open(custom_loss_file, encoding='utf-8') as f:
+            custom_losses = json.load(f)
+        train_losses = [(entry['step'], entry['train_loss']) for entry in custom_losses]
+        print(f"Loaded {len(train_losses)} training loss points from custom callback")
+    
+    if not train_losses and not eval_losses:
+        print("No training data found for plotting")
+        return
     
     # Create plots directory
     plots_dir = os.path.join("results", "plots")
@@ -132,6 +163,13 @@ def plot_training_curves(output_dir: str) -> None:
     if train_losses:
         steps, losses = zip(*train_losses, strict=True)
         ax1.plot(steps, losses, label="Training Loss", color="blue", linewidth=2)
+        initial_train_loss = losses[0]
+        final_train_loss = losses[-1]
+        train_improvement = initial_train_loss - final_train_loss
+        print(
+            f"Training Loss: {initial_train_loss:.4f} -> {final_train_loss:.4f} "
+            f"(Δ{train_improvement:.4f})"
+        )
     if eval_losses:
         eval_steps, eval_loss_vals = zip(*eval_losses, strict=True)
         ax1.plot(
@@ -140,6 +178,13 @@ def plot_training_curves(output_dir: str) -> None:
             label="Validation Loss",
             color="red",
             linewidth=2,
+        )
+        initial_val_loss = eval_loss_vals[0]
+        final_val_loss = eval_loss_vals[-1]
+        val_improvement = initial_val_loss - final_val_loss
+        print(
+            f"Validation Loss: {initial_val_loss:.4f} -> {final_val_loss:.4f} "
+            f"(Δ{val_improvement:.4f})"
         )
     
     ax1.set_xlabel("Steps")
@@ -214,9 +259,9 @@ def plot_training_curves(output_dir: str) -> None:
         eval_improvement = initial_eval_loss - final_eval_loss
         eval_improvement_pct = (eval_improvement / initial_eval_loss) * 100
     else:
-        initial_eval_loss = final_eval_loss = best_eval_loss = eval_improvement_pct = (
-            "N/A"
-        )
+        initial_eval_loss = final_eval_loss = best_eval_loss = (
+            eval_improvement_pct
+        ) = "N/A"
     
     # Create summary text
     summary_text = f"""
@@ -331,7 +376,7 @@ def setup_training_args(config) -> TrainingArguments:
 
 def train_model(config) -> None:
     """Main training function."""
-    print("🎭 Starting Full Finetuning")
+    print("Starting Full Finetuning")
     print_config(config)
     
     # Create output directory
@@ -352,6 +397,9 @@ def train_model(config) -> None:
     # Set up training arguments
     training_args = setup_training_args(config)
     
+    # Create custom callback for logging training losses
+    loss_callback = LossLoggingCallback()
+    
     # Create trainer
     trainer = Trainer(
         model=model,
@@ -360,14 +408,15 @@ def train_model(config) -> None:
         eval_dataset=val_dataset,
         data_collator=data_collator,
         tokenizer=tokenizer,
+        callbacks=[loss_callback],
     )
     
     # Start training
-    print("🚀 Starting training...")
+    print("Starting training...")
     train_result = trainer.train()
     
     # Save final model
-    print("💾 Saving final model...")
+    print("Saving final model...")
     trainer.save_model()
     tokenizer.save_pretrained(config.output_dir)
     
@@ -377,12 +426,12 @@ def train_model(config) -> None:
         json.dump(train_result.metrics, f, indent=2)
     
     # Print final results
-    print("\n✅ Training completed!")
+    print("\nTraining completed!")
     print(f"Final train loss: {train_result.metrics.get('train_loss', 'N/A'):.4f}")
     print(f"Model saved to: {config.output_dir}")
     
     # Final evaluation
-    print("📊 Running final evaluation...")
+    print("Running final evaluation...")
     eval_results = trainer.evaluate()
     print(f"Final eval loss: {eval_results.get('eval_loss', 'N/A'):.4f}")
     
@@ -392,7 +441,7 @@ def train_model(config) -> None:
         json.dump(eval_results, f, indent=2)
     
     # Create training plots
-    print("📈 Creating training plots...")
+    print("Creating training plots...")
     plot_training_curves(config.output_dir)
 
 
@@ -403,11 +452,11 @@ def main() -> None:
     
     # Check if CUDA is available
     if torch.cuda.is_available():
-        print(f"🚀 Using GPU: {torch.cuda.get_device_name()}")
+        print(f"Using GPU: {torch.cuda.get_device_name()}")
         memory_gb = torch.cuda.get_device_properties(0).total_memory / 1024**3
         print(f"GPU Memory: {memory_gb:.1f} GB")
     else:
-        print("⚠️ CUDA not available, using CPU")
+        print("CUDA not available, using CPU")
     
     # Start training
     train_model(config)
