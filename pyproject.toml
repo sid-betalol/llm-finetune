@@ -1,19 +1,42 @@
 [project]
 name = "llm-finetune"
 version = "0.1.0"
-description = "Add your description here"
+description = "Finetuning DistilGPT-2 on Shakespeare dataset with full and LoRA methods"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-    "accelerate>=1.10.1",
-    "datasets>=4.0.0",
-    "jupyter>=1.1.1",
-    "matplotlib>=3.10.6",
-    "peft>=0.17.1",
-    "seaborn>=0.13.2",
-    "torch>=2.8.0",
-    "torchaudio>=2.8.0",
-    "torchvision>=0.23.0",
-    "transformers>=4.56.0",
-    "wandb>=0.21.2",
+    "torch>=2.0.0",
+    "transformers>=4.30.0",
+    "datasets>=2.14.0",
+    "accelerate>=0.20.0",
+    "peft>=0.4.0",
+    "matplotlib>=3.7.0",
+    "seaborn>=0.12.0",
+    "tqdm>=4.65.0",
+    "wandb>=0.15.0",
+    "jupyter>=1.0.0",
 ]
+
+# For script-based projects, don't use build system
+# Just manage dependencies
+
+# Ruff configuration for linting & formatting
+[tool.ruff]
+target-version = "py311"
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "RUF", "B", "C4", "SIM"]
+fixable = ["ALL"]
+unfixable = []
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.ruff.lint.per-file-ignores]
+"**/__init__.py" = ["F401"]
+"*.ipynb" = ["E501"]
+"data/*.py" = ["T201"]  # Allow print in data scripts
+"training/*.py" = ["T201"]  # Allow print in training scripts
+"evaluation/*.py" = ["T201"]  # Allow print in evaluation scripts
