@@ -1,0 +1,19 @@
+[project]
+name = "llm-finetune"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "accelerate>=1.10.1",
+    "datasets>=4.0.0",
+    "jupyter>=1.1.1",
+    "matplotlib>=3.10.6",
+    "peft>=0.17.1",
+    "seaborn>=0.13.2",
+    "torch>=2.8.0",
+    "torchaudio>=2.8.0",
+    "torchvision>=0.23.0",
+    "transformers>=4.56.0",
+    "wandb>=0.21.2",
+]

@@ -1,0 +1,107 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# uv
+.uv/
+uv.lock
+
+# Model files and checkpoints (these can be huge!)
+models/
+*.pt
+*.pth
+*.bin
+*.safetensors
+checkpoints/
+checkpoint-*/
+
+# Cached datasets
+data/cache/
+data/processed/
+*.arrow
+*.cache
+
+# Training outputs
+results/
+outputs/
+runs/
+logs/
+wandb/
+tensorboard_logs/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# PyCharm
+.idea/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Large data files (optional - you might want to track small datasets)
+*.csv
+*.json
+*.txt
+data/*.txt
+data/*.csv
+data/*.json
+
+# Evaluation outputs
+evaluation_results/
+comparison_outputs/
+*.png
+*.jpg
+*.svg
+plots/
+
+# Config files with secrets/API keys
+config/secrets.py
+.env.local
+wandb_api_key.txt
+
+# OS generated files
+Thumbs.db
+.directory
+
+# IDE files
+*.swp
+*.swo
+*~
