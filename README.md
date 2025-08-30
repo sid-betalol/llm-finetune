@@ -42,6 +42,11 @@ The dataset contains modern English phrases paired with Shakespearean equivalent
 - **Size**: Only 274 examples (extremely small for language model fine-tuning)
 - **Quality**: Many slang-type mappings (e.g., "Snack" → "A sight most pleasing") that cannot be learnt with very few examples
 
+![Token Length Distribution](results/token_length_distribution.png)
+
+The token length analysis shows most examples are reasonably short, with a mean length suitable for the model's context window.
+
+
 ## Training Configuration
 
 ```python
