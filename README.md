@@ -1,6 +1,6 @@
 # LLM Fine-tuning Experiment: DistilGPT-2 on Shakespeare Dataset
 
-This project explores fine-tuning DistilGPT-2 on a modern-to-Shakespearean translation dataset using RunPod GPU infrastructure. The experiment demonstrates the challenges of fine-tuning small language models on limited, low-quality datasets.
+This project explores fine-tuning DistilGPT-2 on a modern-to-Shakespearean translation dataset using RunPod GPU infrastructure. 
 
 ## Overview
 
