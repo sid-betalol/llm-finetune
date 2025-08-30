@@ -104,7 +104,7 @@ def setup_training_args(config) -> TrainingArguments:
         logging_steps=config.logging_steps,
         eval_steps=config.eval_steps,
         save_steps=config.save_steps,
-        evaluation_strategy=config.evaluation_strategy,
+        eval_strategy=config.eval_strategy,
         save_strategy=config.save_strategy,
         load_best_model_at_end=config.load_best_model_at_end,
         metric_for_best_model=config.metric_for_best_model,

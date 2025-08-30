@@ -31,7 +31,7 @@ class BaseTrainingConfig:
     eval_steps: int = 50
     save_steps: int = 100
     logging_steps: int = 10
-    evaluation_strategy: str = "steps"
+    eval_strategy: str = "steps"
     save_strategy: str = "steps"
     load_best_model_at_end: bool = True
     metric_for_best_model: str = "eval_loss"
