@@ -1,0 +1,326 @@
+[
+  {
+    "text": "Convert to Shakespearean: He finesse his way outta every situation, smooth AF.\nShakespearean: He deftly maneuvers through every circumstance, quite smoothly.<|endoftext|>",
+    "modern": "He finesse his way outta every situation, smooth AF.",
+    "shakespearean": "He deftly maneuvers through every circumstance, quite smoothly.",
+    "token_length": 36
+  },
+  {
+    "text": "Convert to Shakespearean: The term 'No cap' is used to emphasize that someone is not lying.\nShakespearean: The phrase \"In sooth, no falsehood\" is uttered to stress that one speaks the truth.<|endoftext|>",
+    "modern": "The term 'No cap' is used to emphasize that someone is not lying.",
+    "shakespearean": "The phrase \"In sooth, no falsehood\" is uttered to stress that one speaks the truth.",
+    "token_length": 48
+  },
+  {
+    "text": "Convert to Shakespearean: You wanna catch these hands, bruh?\nShakespearean: Dost thou wish to engage in fisticuffs, good sir?<|endoftext|>",
+    "modern": "You wanna catch these hands, bruh?",
+    "shakespearean": "Dost thou wish to engage in fisticuffs, good sir?",
+    "token_length": 35
+  },
+  {
+    "text": "Convert to Shakespearean: The aesthetic of this artwork is truly remarkable.\nShakespearean: The artistic beauty of this masterpiece is verily extraordinary.<|endoftext|>",
+    "modern": "The aesthetic of this artwork is truly remarkable.",
+    "shakespearean": "The artistic beauty of this masterpiece is verily extraordinary.",
+    "token_length": 32
+  },
+  {
+    "text": "Convert to Shakespearean: I can't go to the party, FOMO is real.\nShakespearean: I cannot attend the gathering, for the dread of missing out is overpowering.<|endoftext|>",
+    "modern": "I can't go to the party, FOMO is real.",
+    "shakespearean": "I cannot attend the gathering, for the dread of missing out is overpowering.",
+    "token_length": 42
+  },
+  {
+    "text": "Convert to Shakespearean: It's been a minute\nShakespearean: Many moons have passed since last<|endoftext|>",
+    "modern": "It's been a minute",
+    "shakespearean": "Many moons have passed since last",
+    "token_length": 23
+  },
+  {
+    "text": "Convert to Shakespearean: That's all hype\nShakespearean: Naught but grandiose tales and fanfare.<|endoftext|>",
+    "modern": "That's all hype",
+    "shakespearean": "Naught but grandiose tales and fanfare.",
+    "token_length": 27
+  },
+  {
+    "text": "Convert to Shakespearean: I cannot stop talking about my crush, he lives in my head rent-free!\nShakespearean: I cease not to speak of my fancy; he doth dwell in my thoughts without cost.<|endoftext|>",
+    "modern": "I cannot stop talking about my crush, he lives in my head rent-free!",
+    "shakespearean": "I cease not to speak of my fancy; he doth dwell in my thoughts without cost.",
+    "token_length": 48
+  },
+  {
+    "text": "Convert to Shakespearean: To 'Slide into the DMs' means to send someone a direct message, usually with romantic intent.\nShakespearean: To \"Venture into private missives\" is to send a personal letter, perchance with courtly designs.<|endoftext|>",
+    "modern": "To 'Slide into the DMs' means to send someone a direct message, usually with romantic intent.",
+    "shakespearean": "To \"Venture into private missives\" is to send a personal letter, perchance with courtly designs.",
+    "token_length": 57
+  },
+  {
+    "text": "Convert to Shakespearean: Don't diss him like that; he's just havin' fun.\nShakespearean: Pray, do not insult him thus; he doth revel in merriment.<|endoftext|>",
+    "modern": "Don't diss him like that; he's just havin' fun.",
+    "shakespearean": "Pray, do not insult him thus; he doth revel in merriment.",
+    "token_length": 45
+  },
+  {
+    "text": "Convert to Shakespearean: He's a real headbanger, always rockin' out to metal.\nShakespearean: He is a true lover of heavy tunes, forever swaying to the sounds.<|endoftext|>",
+    "modern": "He's a real headbanger, always rockin' out to metal.",
+    "shakespearean": "He is a true lover of heavy tunes, forever swaying to the sounds.",
+    "token_length": 44
+  },
+  {
+    "text": "Convert to Shakespearean: Look at that smol puppy, so cute!\nShakespearean: Behold yon diminutive hound, of such endearing countenance!<|endoftext|>",
+    "modern": "Look at that smol puppy, so cute!",
+    "shakespearean": "Behold yon diminutive hound, of such endearing countenance!",
+    "token_length": 38
+  },
+  {
+    "text": "Convert to Shakespearean: Why you trippin' over a little thing like that?\nShakespearean: Wherefore dost thou vex thyself over such a trifle?<|endoftext|>",
+    "modern": "Why you trippin' over a little thing like that?",
+    "shakespearean": "Wherefore dost thou vex thyself over such a trifle?",
+    "token_length": 39
+  },
+  {
+    "text": "Convert to Shakespearean: He loves to flex about his accomplishments.\nShakespearean: He doth revel in boasting of his achievements.<|endoftext|>",
+    "modern": "He loves to flex about his accomplishments.",
+    "shakespearean": "He doth revel in boasting of his achievements.",
+    "token_length": 30
+  },
+  {
+    "text": "Convert to Shakespearean: Her style is so boujee, always dressed in the finest silks.\nShakespearean: Her fashion is of such sumptuous extravagance, ever adorned in silken fabrics most resplendent.<|endoftext|>",
+    "modern": "Her style is so boujee, always dressed in the finest silks.",
+    "shakespearean": "Her fashion is of such sumptuous extravagance, ever adorned in silken fabrics most resplendent.",
+    "token_length": 50
+  },
+  {
+    "text": "Convert to Shakespearean: He's an e-boy who expresses himself through his online presence.\nShakespearean: He is an e-youth who doth convey his essence via his presence in the ethereal realm.<|endoftext|>",
+    "modern": "He's an e-boy who expresses himself through his online presence.",
+    "shakespearean": "He is an e-youth who doth convey his essence via his presence in the ethereal realm.",
+    "token_length": 48
+  },
+  {
+    "text": "Convert to Shakespearean: I'm dead\nShakespearean: I am slain with mirth<|endoftext|>",
+    "modern": "I'm dead",
+    "shakespearean": "I am slain with mirth",
+    "token_length": 21
+  },
+  {
+    "text": "Convert to Shakespearean: Your crew of friends is squad goals\nShakespearean: The company you keep is indeed a band's aspirations<|endoftext|>",
+    "modern": "Your crew of friends is squad goals",
+    "shakespearean": "The company you keep is indeed a band's aspirations",
+    "token_length": 29
+  },
+  {
+    "text": "Convert to Shakespearean: He's totally simping for her, buying gifts all the time.\nShakespearean: Verily, he doth lavish upon her with gifts in excess, a clear sign of his doting affections.<|endoftext|>",
+    "modern": "He's totally simping for her, buying gifts all the time.",
+    "shakespearean": "Verily, he doth lavish upon her with gifts in excess, a clear sign of his doting affections.",
+    "token_length": 50
+  },
+  {
+    "text": "Convert to Shakespearean: I'm right, and that's on periodt!\nShakespearean: I am correct, and upon that, I lay great emphasis!<|endoftext|>",
+    "modern": "I'm right, and that's on periodt!",
+    "shakespearean": "I am correct, and upon that, I lay great emphasis!",
+    "token_length": 36
+  },
+  {
+    "text": "Convert to Shakespearean: She's always so extra, but it's all love.\nShakespearean: Her disposition ever tends towards the extravagant, yet 'tis all in affection.<|endoftext|>",
+    "modern": "She's always so extra, but it's all love.",
+    "shakespearean": "Her disposition ever tends towards the extravagant, yet 'tis all in affection.",
+    "token_length": 39
+  },
+  {
+    "text": "Convert to Shakespearean: This new flavor of ice cream really hits different.\nShakespearean: This novel savor of frozen cream doth strike a disparate chord.<|endoftext|>",
+    "modern": "This new flavor of ice cream really hits different.",
+    "shakespearean": "This novel savor of frozen cream doth strike a disparate chord.",
+    "token_length": 36
+  },
+  {
+    "text": "Convert to Shakespearean: He's pressed because he didn't get the job.\nShakespearean: He is vexed for he did not attain the occupation.<|endoftext|>",
+    "modern": "He's pressed because he didn't get the job.",
+    "shakespearean": "He is vexed for he did not attain the occupation.",
+    "token_length": 35
+  },
+  {
+    "text": "Convert to Shakespearean: That outfit you're wearing is on fleek\nShakespearean: Say, your attire is the finest fettle<|endoftext|>",
+    "modern": "That outfit you're wearing is on fleek",
+    "shakespearean": "Say, your attire is the finest fettle",
+    "token_length": 30
+  },
+  {
+    "text": "Convert to Shakespearean: This cake is absolutely dank, I love it!\nShakespearean: This cake is verily exquisite, I do take great delight in it!<|endoftext|>",
+    "modern": "This cake is absolutely dank, I love it!",
+    "shakespearean": "This cake is verily exquisite, I do take great delight in it!",
+    "token_length": 38
+  },
+  {
+    "text": "Convert to Shakespearean: Let's dip from this party; it's getting boring.\nShakespearean: Let us take our leave from this festivity; it doth lack mirth.<|endoftext|>",
+    "modern": "Let's dip from this party; it's getting boring.",
+    "shakespearean": "Let us take our leave from this festivity; it doth lack mirth.",
+    "token_length": 41
+  },
+  {
+    "text": "Convert to Shakespearean: He's such a simp for her, always trying to impress.\nShakespearean: He is truly a simp for her, ever endeavoring to amaze.<|endoftext|>",
+    "modern": "He's such a simp for her, always trying to impress.",
+    "shakespearean": "He is truly a simp for her, ever endeavoring to amaze.",
+    "token_length": 42
+  },
+  {
+    "text": "Convert to Shakespearean: Mood, I totally get what you're saying.\nShakespearean: Verily, I concur, I fully comprehend thy sentiment.<|endoftext|>",
+    "modern": "Mood, I totally get what you're saying.",
+    "shakespearean": "Verily, I concur, I fully comprehend thy sentiment.",
+    "token_length": 35
+  },
+  {
+    "text": "Convert to Shakespearean: That meme is sending me, I can't stop laughing.\nShakespearean: Yon jestful image doth dispatch me into fits of laughter, I cannot desist.<|endoftext|>",
+    "modern": "That meme is sending me, I can't stop laughing.",
+    "shakespearean": "Yon jestful image doth dispatch me into fits of laughter, I cannot desist.",
+    "token_length": 43
+  },
+  {
+    "text": "Convert to Shakespearean: Yeet that old shirt, it's no longer needed.\nShakespearean: Discard that antiquated garment, it is no more necessary.<|endoftext|>",
+    "modern": "Yeet that old shirt, it's no longer needed.",
+    "shakespearean": "Discard that antiquated garment, it is no more necessary.",
+    "token_length": 37
+  },
+  {
+    "text": "Convert to Shakespearean: She knows how to slay on the runway.\nShakespearean: She possesses the art of impressing upon the runway.<|endoftext|>",
+    "modern": "She knows how to slay on the runway.",
+    "shakespearean": "She possesses the art of impressing upon the runway.",
+    "token_length": 32
+  },
+  {
+    "text": "Convert to Shakespearean: The situation was so cringe, it had me shook.\nShakespearean: The circumstance was incredibly embarrassing, it left me greatly perturbed.<|endoftext|>",
+    "modern": "The situation was so cringe, it had me shook.",
+    "shakespearean": "The circumstance was incredibly embarrassing, it left me greatly perturbed.",
+    "token_length": 36
+  },
+  {
+    "text": "Convert to Shakespearean: If they mess with me one more time, I might just go postal.\nShakespearean: Should they provoke me again, I may embark on a furious rampage.<|endoftext|>",
+    "modern": "If they mess with me one more time, I might just go postal.",
+    "shakespearean": "Should they provoke me again, I may embark on a furious rampage.",
+    "token_length": 41
+  },
+  {
+    "text": "Convert to Shakespearean: Netflix and chill\nShakespearean: Watch plays and relax, mayhaps more<|endoftext|>",
+    "modern": "Netflix and chill",
+    "shakespearean": "Watch plays and relax, mayhaps more",
+    "token_length": 23
+  },
+  {
+    "text": "Convert to Shakespearean: That's some tea.\nShakespearean: That's a tale most intriguing.<|endoftext|>",
+    "modern": "That's some tea.",
+    "shakespearean": "That's a tale most intriguing.",
+    "token_length": 24
+  },
+  {
+    "text": "Convert to Shakespearean: You want to go to the movies? Bet!\nShakespearean: Dost thou wish to attend the moving pictures? Agreed!<|endoftext|>",
+    "modern": "You want to go to the movies? Bet!",
+    "shakespearean": "Dost thou wish to attend the moving pictures? Agreed!",
+    "token_length": 35
+  },
+  {
+    "text": "Convert to Shakespearean: Check out that smol pupper, too cute!\nShakespearean: Direct thine eyes towards that petite canine, exceeding in cuteness!<|endoftext|>",
+    "modern": "Check out that smol pupper, too cute!",
+    "shakespearean": "Direct thine eyes towards that petite canine, exceeding in cuteness!",
+    "token_length": 38
+  },
+  {
+    "text": "Convert to Shakespearean: Hit me up\nShakespearean: Send for me with haste<|endoftext|>",
+    "modern": "Hit me up",
+    "shakespearean": "Send for me with haste",
+    "token_length": 20
+  },
+  {
+    "text": "Convert to Shakespearean: Be careful not to post too many selfies on the same day, or you’re gonna end up looking thirsty.\nShakespearean: Take heed lest thou share excessive likenesses on the same sun's journey, lest thou appear desperate for attention.<|endoftext|>",
+    "modern": "Be careful not to post too many selfies on the same day, or you’re gonna end up looking thirsty.",
+    "shakespearean": "Take heed lest thou share excessive likenesses on the same sun's journey, lest thou appear desperate for attention.",
+    "token_length": 58
+  },
+  {
+    "text": "Convert to Shakespearean: I'm high-key excited about the concert tonight!\nShakespearean: I am overtly and most effusively enthused about this night's concert!<|endoftext|>",
+    "modern": "I'm high-key excited about the concert tonight!",
+    "shakespearean": "I am overtly and most effusively enthused about this night's concert!",
+    "token_length": 40
+  },
+  {
+    "text": "Convert to Shakespearean: Something 'bout his story seems sus, ya feel?\nShakespearean: Aught in his narrative doth ring of suspicion, dost thou perceive it?<|endoftext|>",
+    "modern": "Something 'bout his story seems sus, ya feel?",
+    "shakespearean": "Aught in his narrative doth ring of suspicion, dost thou perceive it?",
+    "token_length": 41
+  },
+  {
+    "text": "Convert to Shakespearean: Sis, you look stunning in that outfit.\nShakespearean: My dear, thou dost appear resplendent in that attire.<|endoftext|>",
+    "modern": "Sis, you look stunning in that outfit.",
+    "shakespearean": "My dear, thou dost appear resplendent in that attire.",
+    "token_length": 37
+  },
+  {
+    "text": "Convert to Shakespearean: She be the main character everywhere she goes, no doubt.\nShakespearean: In every place she treadeth, she is the undoubted protagonist of her own story.<|endoftext|>",
+    "modern": "She be the main character everywhere she goes, no doubt.",
+    "shakespearean": "In every place she treadeth, she is the undoubted protagonist of her own story.",
+    "token_length": 42
+  },
+  {
+    "text": "Convert to Shakespearean: I’m a Beyoncé stan.\nShakespearean: I am fervently devoted to Beyoncé.<|endoftext|>",
+    "modern": "I’m a Beyoncé stan.",
+    "shakespearean": "I am fervently devoted to Beyoncé.",
+    "token_length": 31
+  },
+  {
+    "text": "Convert to Shakespearean: He's a zaddy, always dressed to impress.\nShakespearean: He is a dashing fellow, perpetually attired to astonish.<|endoftext|>",
+    "modern": "He's a zaddy, always dressed to impress.",
+    "shakespearean": "He is a dashing fellow, perpetually attired to astonish.",
+    "token_length": 37
+  },
+  {
+    "text": "Convert to Shakespearean: He's the goat\nShakespearean: He reigns supreme, unmatched through time.<|endoftext|>",
+    "modern": "He's the goat",
+    "shakespearean": "He reigns supreme, unmatched through time.",
+    "token_length": 25
+  },
+  {
+    "text": "Convert to Shakespearean: Pass me that jawn over there.\nShakespearean: Hand me that object yonder.<|endoftext|>",
+    "modern": "Pass me that jawn over there.",
+    "shakespearean": "Hand me that object yonder.",
+    "token_length": 27
+  },
+  {
+    "text": "Convert to Shakespearean: Highkey, that party was lit!\nShakespearean: Verily, that celebration was most splendid!<|endoftext|>",
+    "modern": "Highkey, that party was lit!",
+    "shakespearean": "Verily, that celebration was most splendid!",
+    "token_length": 29
+  },
+  {
+    "text": "Convert to Shakespearean: Just flexing\nShakespearean: Merely displaying one's grandeur.<|endoftext|>",
+    "modern": "Just flexing",
+    "shakespearean": "Merely displaying one's grandeur.",
+    "token_length": 24
+  },
+  {
+    "text": "Convert to Shakespearean: Exclaiming 'It's lit!' means the situation is exciting or fun.\nShakespearean: Declaring 'It's a merry revel!' signifies a joyous occasion.<|endoftext|>",
+    "modern": "Exclaiming 'It's lit!' means the situation is exciting or fun.",
+    "shakespearean": "Declaring 'It's a merry revel!' signifies a joyous occasion.",
+    "token_length": 43
+  },
+  {
+    "text": "Convert to Shakespearean: This song really slaps, I love it!\nShakespearean: This melody doth resound with vigor, it pleaseth me greatly!<|endoftext|>",
+    "modern": "This song really slaps, I love it!",
+    "shakespearean": "This melody doth resound with vigor, it pleaseth me greatly!",
+    "token_length": 38
+  },
+  {
+    "text": "Convert to Shakespearean: Yo, I'm tellin you this no cap\nShakespearean: Hear ye, I do proclaim this in sooth, no falsehood<|endoftext|>",
+    "modern": "Yo, I'm tellin you this no cap",
+    "shakespearean": "Hear ye, I do proclaim this in sooth, no falsehood",
+    "token_length": 35
+  },
+  {
+    "text": "Convert to Shakespearean: That boy is a savage!\nShakespearean: That young lad is ruthless, like a wild beast<|endoftext|>",
+    "modern": "That boy is a savage!",
+    "shakespearean": "That young lad is ruthless, like a wild beast",
+    "token_length": 28
+  },
+  {
+    "text": "Convert to Shakespearean: You're my bae, and I love you.\nShakespearean: Thou art my beloved, and I hold deep affection for thee.<|endoftext|>",
+    "modern": "You're my bae, and I love you.",
+    "shakespearean": "Thou art my beloved, and I hold deep affection for thee.",
+    "token_length": 36
+  }
+]
