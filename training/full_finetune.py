@@ -71,7 +71,19 @@ def load_model_and_tokenizer(model_name: str) -> tuple[GPT2LMHeadModel, GPT2Toke
 def plot_training_curves(output_dir: str) -> None:
     """Create comprehensive training plots from trainer state."""
     trainer_state_path = os.path.join(output_dir, "trainer_state.json")
-    
+
+    if not os.path.exists(trainer_state_path):
+        # Check in the latest checkpoint directory
+        import glob
+        checkpoint_dirs = glob.glob(os.path.join(output_dir, "checkpoint-*"))
+        if checkpoint_dirs:
+            # Get the highest numbered checkpoint
+            latest_checkpoint = max(
+                checkpoint_dirs, key=lambda x: int(x.split('-')[-1])
+            )
+            trainer_state_path = os.path.join(latest_checkpoint, "trainer_state.json")
+            print(f"Using trainer state from checkpoint: {latest_checkpoint}")
+
     if not os.path.exists(trainer_state_path):
         print(f"Warning: No trainer state file found at {trainer_state_path}")
         return
