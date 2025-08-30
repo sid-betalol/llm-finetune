@@ -74,8 +74,6 @@ The model showed clear learning dynamics over 10 epochs:
 **Key Metrics:**
 - **Training Loss**: 4.6142 → 1.4294 (69.0% improvement)
 - **Validation Loss**: 3.1139 → 2.6252 (15.7% improvement)
-- **Total Training Steps**: 280
-- **Training Time**: ~20 minutes on RTX 4000 Ada
 
 ### Analysis
 
