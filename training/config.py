@@ -65,7 +65,7 @@ class FullFinetuneConfig(BaseTrainingConfig):
     learning_rate: float = 5e-5
     
     # More conservative training for full model
-    num_train_epochs: int = 2  # Fewer epochs to avoid overfitting
+    num_train_epochs: int = 10
 
 
 @dataclass

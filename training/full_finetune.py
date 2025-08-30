@@ -6,6 +6,7 @@ Updates all parameters of DistilGPT-2.
 import json
 import os
 
+import matplotlib.pyplot as plt
 import torch
 from config import get_full_finetune_config, print_config
 from transformers import (
@@ -65,6 +66,195 @@ def load_model_and_tokenizer(model_name: str) -> tuple[GPT2LMHeadModel, GPT2Toke
     
     print(f"Model loaded with {model.num_parameters():,} parameters")
     return model, tokenizer
+
+
+def plot_training_curves(output_dir: str) -> None:
+    """Create comprehensive training plots from trainer state."""
+    trainer_state_path = os.path.join(output_dir, "trainer_state.json")
+    
+    if not os.path.exists(trainer_state_path):
+        print(f"Warning: No trainer state file found at {trainer_state_path}")
+        return
+    
+    # Load training history
+    with open(trainer_state_path, encoding="utf-8") as f:
+        trainer_state = json.load(f)
+    
+    log_history = trainer_state.get("log_history", [])
+    if not log_history:
+        print("No training history found")
+        return
+    
+    # Extract metrics
+    train_losses = []
+    eval_losses = []
+    learning_rates = []
+    
+    for entry in log_history:
+        if "train_loss" in entry:
+            train_losses.append((entry["step"], entry["train_loss"]))
+        if "eval_loss" in entry:
+            eval_losses.append((entry["step"], entry["eval_loss"]))
+        if "learning_rate" in entry:
+            learning_rates.append((entry["step"], entry["learning_rate"]))
+    
+    # Create plots directory
+    plots_dir = os.path.join("results", "plots")
+    os.makedirs(plots_dir, exist_ok=True)
+    
+    # Create comprehensive training plot
+    fig, axes = plt.subplots(2, 2, figsize=(15, 10))
+    fig.suptitle("Full Finetuning Training Progress", fontsize=16, fontweight="bold")
+    
+    # Plot 1: Training and Validation Loss
+    ax1 = axes[0, 0]
+    if train_losses:
+        steps, losses = zip(*train_losses, strict=True)
+        ax1.plot(steps, losses, label="Training Loss", color="blue", linewidth=2)
+    if eval_losses:
+        eval_steps, eval_loss_vals = zip(*eval_losses, strict=True)
+        ax1.plot(
+            eval_steps,
+            eval_loss_vals,
+            label="Validation Loss",
+            color="red",
+            linewidth=2,
+        )
+    
+    ax1.set_xlabel("Steps")
+    ax1.set_ylabel("Loss")
+    ax1.set_title("Training and Validation Loss")
+    ax1.legend()
+    ax1.grid(True, alpha=0.3)
+    
+    # Plot 2: Learning Rate Schedule
+    ax2 = axes[0, 1]
+    if learning_rates:
+        lr_steps, lr_vals = zip(*learning_rates, strict=True)
+        ax2.plot(lr_steps, lr_vals, color="green", linewidth=2)
+    ax2.set_xlabel("Steps")
+    ax2.set_ylabel("Learning Rate")
+    ax2.set_title("Learning Rate Schedule")
+    ax2.grid(True, alpha=0.3)
+    ax2.ticklabel_format(style="scientific", axis="y", scilimits=(0,0))
+    
+    # Plot 3: Loss Improvement (difference from initial)
+    ax3 = axes[1, 0]
+    if train_losses and len(train_losses) > 1:
+        initial_loss = train_losses[0][1]
+        steps, losses = zip(*train_losses, strict=True)
+        improvements = [initial_loss - loss for loss in losses]
+        ax3.plot(
+            steps,
+            improvements,
+            label="Training Loss Improvement",
+            color="purple",
+            linewidth=2,
+        )
+    
+    if eval_losses and len(eval_losses) > 1:
+        initial_eval_loss = eval_losses[0][1]
+        eval_steps, eval_loss_vals = zip(*eval_losses, strict=True)
+        eval_improvements = [initial_eval_loss - loss for loss in eval_loss_vals]
+        ax3.plot(
+            eval_steps,
+            eval_improvements,
+            label="Validation Loss Improvement",
+            color="orange",
+            linewidth=2,
+        )
+    
+    ax3.set_xlabel("Steps")
+    ax3.set_ylabel("Loss Improvement")
+    ax3.set_title("Loss Improvement Over Time")
+    ax3.legend()
+    ax3.grid(True, alpha=0.3)
+    
+    # Plot 4: Training Summary Stats
+    ax4 = axes[1, 1]
+    ax4.axis("off")
+    
+    # Calculate summary statistics
+    if train_losses:
+        initial_train_loss = train_losses[0][1]
+        final_train_loss = train_losses[-1][1]
+        best_train_loss = min(loss for _, loss in train_losses)
+        train_improvement = initial_train_loss - final_train_loss
+        train_improvement_pct = (train_improvement / initial_train_loss) * 100
+    else:
+        initial_train_loss = final_train_loss = best_train_loss = (
+            train_improvement_pct
+        ) = "N/A"
+    
+    if eval_losses:
+        initial_eval_loss = eval_losses[0][1]
+        final_eval_loss = eval_losses[-1][1]
+        best_eval_loss = min(loss for _, loss in eval_losses)
+        eval_improvement = initial_eval_loss - final_eval_loss
+        eval_improvement_pct = (eval_improvement / initial_eval_loss) * 100
+    else:
+        initial_eval_loss = final_eval_loss = best_eval_loss = eval_improvement_pct = (
+            "N/A"
+        )
+    
+    # Create summary text
+    summary_text = f"""
+    Training Summary:
+    
+    Training Loss:
+    • Initial: {initial_train_loss:.4f}
+    • Final: {final_train_loss:.4f}
+    • Best: {best_train_loss:.4f}
+    • Improvement: {train_improvement_pct:.1f}%
+    
+    Validation Loss:
+    • Initial: {initial_eval_loss:.4f}
+    • Final: {final_eval_loss:.4f}
+    • Best: {best_eval_loss:.4f}
+    • Improvement: {eval_improvement_pct:.1f}%
+    
+    Total Steps: {len(train_losses) if train_losses else 0}
+    """
+    
+    ax4.text(0.1, 0.9, summary_text, transform=ax4.transAxes, fontsize=11, 
+             verticalalignment="top", fontfamily="monospace",
+             bbox={"boxstyle": "round,pad=0.5", "facecolor": "lightgray", "alpha": 0.8})
+    
+    plt.tight_layout()
+    
+    # Save the comprehensive plot
+    plot_path = os.path.join(plots_dir, "full_finetune_training_curves.png")
+    plt.savefig(plot_path, dpi=300, bbox_inches="tight", facecolor="white")
+    print(f"Comprehensive training plots saved to: {plot_path}")
+    
+    # Also save individual loss plot for quick reference
+    plt.figure(figsize=(10, 6))
+    if train_losses:
+        steps, losses = zip(*train_losses, strict=True)
+        plt.plot(steps, losses, label="Training Loss", color="blue", linewidth=2)
+    if eval_losses:
+        eval_steps, eval_loss_vals = zip(*eval_losses, strict=True)
+        plt.plot(
+            eval_steps,
+            eval_loss_vals,
+            label="Validation Loss",
+            color="red",
+            linewidth=2,
+        )
+    
+    plt.xlabel("Steps", fontsize=12)
+    plt.ylabel("Loss", fontsize=12)
+    plt.title(
+        "Full Finetuning: Training vs Validation Loss", fontsize=14, fontweight="bold"
+    )
+    plt.legend(fontsize=12)
+    plt.grid(True, alpha=0.3)
+    
+    simple_plot_path = os.path.join(plots_dir, "training_loss_simple.png")
+    plt.savefig(simple_plot_path, dpi=300, bbox_inches="tight", facecolor="white")
+    print(f"Simple loss plot saved to: {simple_plot_path}")
+    
+    plt.close("all")  # Close all figures to free memory
 
 
 def create_datasets(
@@ -179,6 +369,10 @@ def train_model(config) -> None:
     eval_path = os.path.join(config.output_dir, "eval_results.json")
     with open(eval_path, "w", encoding="utf-8") as f:
         json.dump(eval_results, f, indent=2)
+    
+    # Create training plots
+    print("📈 Creating training plots...")
+    plot_training_curves(config.output_dir)
 
 
 def main() -> None:
